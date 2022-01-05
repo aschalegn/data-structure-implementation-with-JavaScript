@@ -14,7 +14,7 @@ class BinaryTree {
         this.value = initialValue;
     }
 
-    insert() {
+    insert(data) {
 
     }
 
@@ -26,7 +26,7 @@ class BinaryTree {
 
     }
 
-    isBalanced() {
+    isPerfect() {
 
     }
 }

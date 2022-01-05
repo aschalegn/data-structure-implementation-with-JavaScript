@@ -36,14 +36,9 @@ class GraphWithList {
         console.log({ v1Index, v2Index });
     }
 
-    bfs(query) {
-        const key = Object.keys(query);
-        const value = query[key];
-    };
-
-    dfs() {
-
-    };
+    search(key) {
+        return this.adjacencyList[key];
+    }
 }
 
-export default GraphWithList ;
+export default GraphWithList;

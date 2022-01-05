@@ -36,12 +36,12 @@ import Tree from "./ds/Tree/Tree.js";
 // linked.removeFromEnd();
 // console.log(linked);
 
-const tree = new Tree();
-const newNode = tree.add({ name: "avraham", age: 80, id: 1 });
-const newNode1 = tree.add({ name: "moshe", age: 50, id: 2 }, newNode);
-const newNode2 = tree.add({ name: "avi", age: 45, id: 3 }, newNode);
-tree.add({ name: "sholomo", age: 25, id: 8 }, newNode1);
-tree.add({ name: "picacho", age: 15, id: 4 }, newNode2);
+// const tree = new Tree();
+// const newNode = tree.add({ name: "avraham", age: 80, id: 1 });
+// const newNode1 = tree.add({ name: "moshe", age: 50, id: 2 }, newNode);
+// const newNode2 = tree.add({ name: "avi", age: 45, id: 3 }, newNode);
+// tree.add({ name: "sholomo", age: 25, id: 8 }, newNode1);
+// tree.add({ name: "picacho", age: 15, id: 4 }, newNode2);
 
 // console.log(tree);
 // const result = tree.dfs({ id: 4 });
@@ -52,13 +52,16 @@ tree.add({ name: "picacho", age: 15, id: 4 }, newNode2);
 // const deleteResult = tree.remove(2);
 // console.log(deleteResult);
 
-// const listGraph = new GraphWithList();
-// listGraph.addVertex("asche");
-// listGraph.addVertex("noom");
-// listGraph.addVertex("room");
-// listGraph.addVertex("appartment");
-// listGraph.addEdge("asche", "noom");
-// listGraph.addEdge("appartment", "room");
-// listGraph.addEdge("asche", "room");
-// console.log(listGraph);
+const listGraph = new GraphWithList();
+listGraph.addVertex("asche");
+listGraph.addVertex("noom");
+listGraph.addVertex("room");
+listGraph.addVertex("appartment");
+listGraph.addEdge("asche", "noom");
+listGraph.addEdge("appartment", "room");
+listGraph.addEdge("asche", "room");
+
+const listGraphBfs = listGraph.search("asche");
+
+console.log(listGraphBfs);
 
