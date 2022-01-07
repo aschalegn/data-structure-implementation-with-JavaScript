@@ -67,7 +67,10 @@ const matrixGraph = new AdjacencyMatrixGraph();
 matrixGraph.addVertex("tel aviv");
 matrixGraph.addVertex("lod");
 matrixGraph.addVertex("hifa");
-matrixGraph.addEdge("tel aviv", "lod", 300);
 matrixGraph.addVertex("rehovot");
+matrixGraph.addEdge("tel aviv", "rehovot", 300);
+matrixGraph.addEdge("tel aviv", "lod", 200);
+matrixGraph.addEdge("lod", "rehovot", 50);
+matrixGraph.removeEdge("lod", "rehovot", 50);
 
 console.log(matrixGraph);

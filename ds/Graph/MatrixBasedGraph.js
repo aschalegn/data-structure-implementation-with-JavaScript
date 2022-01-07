@@ -15,7 +15,6 @@ export default class AdjacencyMatrixGraph {
             };
             this.adjacencyMatrix[i].push(0);
         };
-        // this.addEdge(this.adjacencyMatrix.length - 1);
     }
 
     removeVertex(vertex) {
@@ -24,28 +23,22 @@ export default class AdjacencyMatrixGraph {
 
     addEdge(v1, v2, weight) {
         if (!weight) throw Error("method addEdge requires a weight for the connection");
+        if (v1 === v2) throw Error("a node can not connect to itself");
         const indexV1 = this.map[v1];
         const indexV2 = this.map[v2];
-        console.log(indexV1, indexV2);
         if (typeof (indexV1) !== "number" || typeof (indexV2) !== "number") throw Error("method addEdge requires two valid adjecencies");
-
         this.adjacencyMatrix[indexV1][indexV2] = weight;
         this.adjacencyMatrix[indexV2][indexV1] = weight;
-        // for (let i = 0; i < this.adjacencyMatrix.length; i++) {
-        //     if (i < this.adjacencyMatrix.length - 1) {
-        //         this.adjacencyMatrix[row].push(0);
-        //     };
-        //     this.adjacencyMatrix[i].push(0);
-        // };
-
-        // if (weight) {
-
-        // }
     };
 
     removeEdge(v1, v2) {
-
-    }
+        if (v1 === v2) throw Error("unable to dlete connection, no connection of node to itself");
+        const indexV1 = this.map[v1];
+        const indexV2 = this.map[v2];
+        if (typeof (indexV1) !== "number" || typeof (indexV2) !== "number") throw Error("method addEdge requires two valid adjecencies");
+        this.adjacencyMatrix[indexV1].splice(indexV2, 1);
+        this.adjacencyMatrix[indexV2].splice(indexV1, 1);
+    };
 
     search(key) {
 

@@ -13,6 +13,7 @@ export default class AdjacencyListGraph {
     }
 
     addEdge(v1, v2) {
+        if (v1 === v2) throw Error("a node can not connect to itself");
         if (!v1 || !v2 || !this.adjacencyList[v1] || !this.adjacencyList[v2]) {
             throw Error("method addEdge requires two valid adjecencies");
         }
@@ -21,6 +22,7 @@ export default class AdjacencyListGraph {
     }
 
     removeEdge(v1, v2) {
+        if (v1 === v2) throw Error("unable to dlete connection, no connection of node to itself");
         if (!this.adjacencyList[v1] || !this.adjacencyList[v1]) {
             throw Error("method removeedge requires tw0 valid adjecencies");
         }
