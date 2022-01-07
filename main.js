@@ -59,18 +59,26 @@ import Tree from "./ds/Tree/Tree.js";
 // listGraph.addVertex("appartment");
 // listGraph.addEdge("asche", "noom");
 // listGraph.addEdge("appartment", "room");
-// listGraph.addEdge("asche", "room");
+// listGraph.removeVertex("asche");
 // const listGraphBfs = listGraph.search("asche");
-// console.log(listGraphBfs);
+// console.log(listGraph);
 
 const matrixGraph = new AdjacencyMatrixGraph();
 matrixGraph.addVertex("tel aviv");
 matrixGraph.addVertex("lod");
 matrixGraph.addVertex("hifa");
 matrixGraph.addVertex("rehovot");
-matrixGraph.addEdge("tel aviv", "rehovot", 300);
-matrixGraph.addEdge("tel aviv", "lod", 200);
-matrixGraph.addEdge("lod", "rehovot", 50);
-matrixGraph.removeEdge("lod", "rehovot", 50);
+matrixGraph.addEdge("tel aviv", "rehovot", 40);
+matrixGraph.addEdge("tel aviv", "lod", 50);
+matrixGraph.addEdge("tel aviv", "hifa", 200);
+matrixGraph.addEdge("lod", "rehovot", 10);
+
+matrixGraph.removeEdge("lod", "rehovot");
+// matrixGraph.removeVertex("lod");
+// const isConnectedDirectly = matrixGraph.isConnectedDirectly("lod", 'rehovot');
+// console.log(isConnectedDirectly);
+
+
+
 
 console.log(matrixGraph);

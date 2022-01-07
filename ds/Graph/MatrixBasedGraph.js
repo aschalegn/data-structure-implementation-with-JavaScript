@@ -18,36 +18,40 @@ export default class AdjacencyMatrixGraph {
     }
 
     removeVertex(vertex) {
-
+        const index = this.map[vertex];
+        if (index === undefined) throw Error("can not delete non existing vertex");
+        this.adjacencyMatrix.splice(index, 1);
+        for (let i = 0; i < this.adjacencyMatrix.length; i++) {
+            this.adjacencyMatrix[i].splice(index, 1);
+        };
+        delete (this.map[vertex]);
     }
 
     addEdge(v1, v2, weight) {
         if (!weight) throw Error("method addEdge requires a weight for the connection");
-        if (v1 === v2) throw Error("a node can not connect to itself");
+        if (v1 === v2) throw Error("a vertex can not connect to itself");
         const indexV1 = this.map[v1];
         const indexV2 = this.map[v2];
-        if (typeof (indexV1) !== "number" || typeof (indexV2) !== "number") throw Error("method addEdge requires two valid adjecencies");
+        if (indexV1 === undefined || indexV2 === undefined) throw Error("method addEdge requires 2 valid vartex");
         this.adjacencyMatrix[indexV1][indexV2] = weight;
         this.adjacencyMatrix[indexV2][indexV1] = weight;
     };
 
     removeEdge(v1, v2) {
-        if (v1 === v2) throw Error("unable to dlete connection, no connection of node to itself");
+        if (v1 === v2) throw Error("unable to delete connection, no connection of vertex to itself");
         const indexV1 = this.map[v1];
         const indexV2 = this.map[v2];
-        if (typeof (indexV1) !== "number" || typeof (indexV2) !== "number") throw Error("method addEdge requires two valid adjecencies");
-        this.adjacencyMatrix[indexV1].splice(indexV2, 1);
-        this.adjacencyMatrix[indexV2].splice(indexV1, 1);
+        if (indexV1 === undefined || indexV2 === undefined) throw Error("method removeEdge requires 2 valid vartex");
+        this.adjacencyMatrix[indexV1][indexV2] = 0;
+        this.adjacencyMatrix[indexV2][indexV1] = 0;
     };
 
-    search(key) {
-
+    isConnectedDirectly(v1, v2) {
+        if (v1 === v2) throw Error("no connection of vertex to itself");
+        const indexV1 = this.map[v1];
+        const indexV2 = this.map[v2];
+        if (indexV1 === undefined || indexV2 === undefined) throw Error("method isConnectedDirectly requires 2 valid vartex");
+        if (this.adjacencyMatrix[indexV1][indexV2] === this.adjacencyMatrix[indexV2][indexV1]) return true;
+        return false;
     }
-
-    isConnected(v1, v2) {
-
-    }
-
-
-
-}
+};
