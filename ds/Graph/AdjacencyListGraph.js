@@ -1,6 +1,7 @@
-class GraphWithList {
+export default class AdjacencyListGraph {
     constructor() {
         this.adjacencyList = {};
+        this.isDirected = false;
     }
 
     addVertex(key) {
@@ -12,8 +13,9 @@ class GraphWithList {
     }
 
     addEdge(v1, v2) {
-        if (!v1 || !v2 || !this.adjacencyList[v1] || !this.adjacencyList[v2])
+        if (!v1 || !v2 || !this.adjacencyList[v1] || !this.adjacencyList[v2]) {
             throw Error("method addEdge requires two valid adjecencies");
+        }
         this.adjacencyList[v1].push(v2);
         this.adjacencyList[v2].push(v1);
     }
@@ -24,21 +26,22 @@ class GraphWithList {
         }
 
         const v2Index = this.adjacencyList[v1].indexOf(v2);
-        if (v2Index !== -1) {
-            console.log("exists");
-            this.adjacencyList[v1].splice(v2Index, 1);
-        }
         const v1Index = this.adjacencyList[v2].indexOf(v1);
-        if (v1Index !== -1) {
-            console.log("exists");
+        if (v2Index !== -1 && v1Index !== -1) {
+            this.adjacencyList[v1].splice(v2Index, 1);
             this.adjacencyList[v2].splice(v1Index, 1);
+            return true;
         }
-        console.log({ v1Index, v2Index });
+        return -1;
     }
 
     search(key) {
         return this.adjacencyList[key];
     }
-}
 
-export default GraphWithList;
+    isConnected(v1, v2) {
+        if (this.adjacencyList[v1].includes(v2)) return true;
+        return false;
+    }
+
+}

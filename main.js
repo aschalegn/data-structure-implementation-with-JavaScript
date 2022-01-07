@@ -1,4 +1,5 @@
-import GraphWithList from "./ds/Graph/Graph.js";
+import AdjacencyListGraph from "./ds/Graph/AdjacencyListGraph.js";
+import AdjacencyMatrixGraph from "./ds/Graph/MatrixBasedGraph.js";
 import LinkedList from "./ds/LinkedList.js";
 import Queue from "./ds/Queue.js";
 import Stack from "./ds/Stack.js";
@@ -48,20 +49,25 @@ import Tree from "./ds/Tree/Tree.js";
 // console.log(result);
 // const resultBfs = tree.bfs({ id: 4 });
 // console.log(resultBfs);
-
 // const deleteResult = tree.remove(2);
 // console.log(deleteResult);
 
-const listGraph = new GraphWithList();
-listGraph.addVertex("asche");
-listGraph.addVertex("noom");
-listGraph.addVertex("room");
-listGraph.addVertex("appartment");
-listGraph.addEdge("asche", "noom");
-listGraph.addEdge("appartment", "room");
-listGraph.addEdge("asche", "room");
+// const listGraph = new AdjacencyListGraph();
+// listGraph.addVertex("asche");
+// listGraph.addVertex("noom");
+// listGraph.addVertex("room");
+// listGraph.addVertex("appartment");
+// listGraph.addEdge("asche", "noom");
+// listGraph.addEdge("appartment", "room");
+// listGraph.addEdge("asche", "room");
+// const listGraphBfs = listGraph.search("asche");
+// console.log(listGraphBfs);
 
-const listGraphBfs = listGraph.search("asche");
+const matrixGraph = new AdjacencyMatrixGraph();
+matrixGraph.addVertex("tel aviv");
+matrixGraph.addVertex("lod");
+matrixGraph.addVertex("hifa");
+matrixGraph.addEdge("tel aviv", "lod", 300);
+matrixGraph.addVertex("rehovot");
 
-console.log(listGraphBfs);
-
+console.log(matrixGraph);
