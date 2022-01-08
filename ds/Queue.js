@@ -1,4 +1,4 @@
-class Queue {
+export default class Queue {
     constructor(array = []) {
         this.queue = array;
         this.length = this.queue.length;
@@ -16,7 +16,7 @@ class Queue {
     dequeue() {
         if (this.isEmpty()) throw Error("can not deque an emply queue");
         this.length--;
-        this.queue.shift();
+        return this.queue.shift();
     }
 
     isEmpty() {
@@ -29,5 +29,3 @@ class Queue {
         return this.queue[0];
     }
 }
-
-export default Queue;

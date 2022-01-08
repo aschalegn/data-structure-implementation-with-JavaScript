@@ -1,3 +1,5 @@
+import Queue from "../Queue.js";
+
 export default class AdjacencyMatrixGraph {
     constructor() {
         this.adjacencyMatrix = [];
@@ -35,6 +37,7 @@ export default class AdjacencyMatrixGraph {
         if (indexV1 === undefined || indexV2 === undefined) throw Error("method addEdge requires 2 valid vartex");
         this.adjacencyMatrix[indexV1][indexV2] = weight;
         this.adjacencyMatrix[indexV2][indexV1] = weight;
+        return true;
     };
 
     removeEdge(v1, v2) {
@@ -44,6 +47,7 @@ export default class AdjacencyMatrixGraph {
         if (indexV1 === undefined || indexV2 === undefined) throw Error("method removeEdge requires 2 valid vartex");
         this.adjacencyMatrix[indexV1][indexV2] = 0;
         this.adjacencyMatrix[indexV2][indexV1] = 0;
+        return true;
     };
 
     isConnectedDirectly(v1, v2) {
@@ -51,7 +55,36 @@ export default class AdjacencyMatrixGraph {
         const indexV1 = this.map[v1];
         const indexV2 = this.map[v2];
         if (indexV1 === undefined || indexV2 === undefined) throw Error("method isConnectedDirectly requires 2 valid vartex");
-        if (this.adjacencyMatrix[indexV1][indexV2] === this.adjacencyMatrix[indexV2][indexV1]) return true;
+        if (this.adjacencyMatrix[indexV1][indexV2] !== 0 && this.adjacencyMatrix[indexV2][indexV1] !== 0) return true;
         return false;
-    }
+    };
+
+    isConnected(v1, v2) {
+        if (v1 === v2) throw Error("no connection of vertex to itself");
+        const indexV1 = this.map[v1];
+        const indexV2 = this.map[v2];
+        if (indexV1 === undefined || indexV2 === undefined) throw Error("method isConnected requires 2 valid vartex");
+        if (this.adjacencyMatrix[indexV1][indexV2] !== 0 && this.adjacencyMatrix[indexV2][indexV1] !== 0)
+            return {
+                connected: true,
+                level: 1
+            };
+        const queue = new Queue;
+        let currentIndex = indexV1;
+        let levels = 0;
+        while (queue) {
+            console.log(currentIndex);
+            for (let i = 0; i < this.adjacencyMatrix[currentIndex].length; i++) {
+                if (i === indexV2 && this.adjacencyMatrix[currentIndex][i] !== 0)
+                    return {
+                        connected: true,
+                        level: levels
+                    };
+                if (this.adjacencyMatrix[currentIndex][i] !== 0) queue.enqueue(i);
+            }
+            levels++;
+            currentIndex = queue.dequeue();
+        }
+        return { connected: false };
+    };
 };
