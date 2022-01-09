@@ -73,7 +73,6 @@ export default class AdjacencyMatrixGraph {
         let currentIndex = indexV1;
         let levels = 0;
         while (queue) {
-            console.log(currentIndex);
             for (let i = 0; i < this.adjacencyMatrix[currentIndex].length; i++) {
                 if (i === indexV2 && this.adjacencyMatrix[currentIndex][i] !== 0)
                     return {
